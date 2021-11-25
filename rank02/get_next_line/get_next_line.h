@@ -6,13 +6,15 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 08:30:29 by rburri            #+#    #+#             */
-/*   Updated: 2021/11/15 08:32:05 by rburri           ###   ########.fr       */
+/*   Updated: 2021/11/25 16:12:21 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-int	get_next_line(char **line);
+
+
+int	get_next_line(int fd);
 
 #endif
