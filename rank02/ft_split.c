@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 13:49:01 by rburri            #+#    #+#             */
-/*   Updated: 2021/11/25 14:58:30 by rburri           ###   ########.fr       */
+/*   Updated: 2021/11/26 09:44:36 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**ft_split(char *str, char c)
 	return (split);
 }
 
-int	main(void)
+int	main(void)	
 {
 	int		i;
 	char	**array_of_str;
