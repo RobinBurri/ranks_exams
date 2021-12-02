@@ -39,7 +39,7 @@ char *ft_strdup(char *s, int f)
 		ns[i] = s[i];
 		i++;
 	}
-	ns = '\0';
+	ns[i] = '\0';
 	if (f == 1)
 		free(s);
 	return (ns);
@@ -57,21 +57,19 @@ char *ft_strjoin(char *s, char *buf)
 	if (ns == NULL)
 		return (NULL);
 	while (s[i] && (!(!s)))
-	{
-		ns[j] = s[i];
-		i++;
-		j++;
-	}
+		ns[j++] = s[i++];
 	i = 0;
 	while (buf[i])
 		ns[j++] = buf[i++];
-	ns = '\0';
+	ns[j] = '\0';
 	return (ns);
 }
 
 int ft_hasnl(char *s)
 {
 	int i =0;
+	if (!s)
+		return (-1);
 	while (s[i])
 	{
 		if (s[i] == '\n')
@@ -85,13 +83,16 @@ char *ft_substr(char *s, int start, int len, int f)
 	char *ns;
 	int s_len;
 	int i = 0;
+	int m_len;
 	
+	s_len = ft_strlen(s);
 	if (!*s)
 		return (NULL);
-	s_len = ft_strlen(s);
 	if (len > s_len + 1)
-		len = s_len + 1;
-	ns = (char *)malloc(1 * len + 1);
+		m_len = s_len + 1;
+	else
+		m_len = len;
+	ns = (char *)malloc(1 * m_len + 1);
 	if (ns == NULL)	
 		return (NULL);
 	while (start < s_len && i < len)
@@ -102,11 +103,13 @@ char *ft_substr(char *s, int start, int len, int f)
 	return (ns);
 }
 
-char *ft_send_line(char **s, int ck)
+char *ft_send_line(char **s)
 {
 	char *line;
 	int len;
+	int ck;
 
+	ck = ft_hasnl(*s);
 	line = ft_substr(*s, 0, ck + 1, 0);
 	len = ft_strlen(*s) - ft_strlen(line);
 	*s = ft_substr(*s, ck + 1, len, 1);
@@ -162,11 +165,11 @@ char *get_next_line(int fd)
 		s = ft_strjoin(s, buf);
 		ck = ft_hasnl(buf);
 		if (ck != -1)
-			ft_send_line(&s, ck);
+			return (ft_send_line(&s));
 	}
-	ck = ft_hasnl(buf);
+	ck = ft_hasnl(s);
 	if (ck != -1)
-			ft_send_line(&s, ck);
+			ft_send_line(&s);
 	return (ft_send_last(s, ints));
 }
 
@@ -174,7 +177,7 @@ int main()
 {
 	int fd;
 	int f;
-	char *s = "";
+	char *s;
 	int start = 1;
 
 	fd = open("text.txt", O_RDONLY);
@@ -183,21 +186,15 @@ int main()
 		printf("OPEN");
 		return (1);
 	}
-	while (start)
+	while ((s = get_next_line(fd)) != NULL)
 	{
-		s = get_next_line(fd);
-		if (s != NULL)
-		{
-			printf("%s", s);
-			free(s);
-		}
-		else {
-			start = 0;
-		}
+		printf("%s", s);
+		free(s);
 	}
 	f = close(fd);
+	if (fd == -1)
 	{
-		printf("close");
+		printf("close1");
 		return (1);
 	}
 	return (0);
