@@ -33,7 +33,7 @@ char *ft_itoa_base(unsigned num, int base)
 	len = 0;
 	while (nbr != 0)
 	{
-		nb /= base;
+		nbr /= base;
 		len++;
 	}
 	res = (char *)malloc(1 * (len + 1));
@@ -65,7 +65,7 @@ int	ft_srtlen(char *s)
 int	ft_putstr(char *s)
 {
 	int i = 0;
-	cnt = 0;
+	int	cnt = 0;
 	while (s[i])
 	{
 		cnt += ft_putchar(s[i]);
