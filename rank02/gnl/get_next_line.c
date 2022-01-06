@@ -6,13 +6,13 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 10:44:10 by rburri            #+#    #+#             */
-/*   Updated: 2022/01/06 10:55:50 by rburri           ###   ########.fr       */
+/*   Updated: 2022/01/06 10:58:21 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char *save)
+static char	*ft_get_line(char *save)
 {
 	int		i;
 	char	*s;
@@ -40,7 +40,7 @@ char	*ft_get_line(char *save)
 	return (s);
 }
 
-char	*ft_save(char *save)
+static char	*ft_save(char *save)
 {
 	int		i;
 	int		c;
@@ -66,7 +66,7 @@ char	*ft_save(char *save)
 	return (s);
 }
 
-char	*ft_read_and_save(int fd, char *save)
+static char	*ft_read_and_save(int fd, char *save)
 {
 	char	*buff;
 	int		read_bytes;
