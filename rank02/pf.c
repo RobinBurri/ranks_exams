@@ -19,6 +19,8 @@ int ft_putstr(char *s)
 {
 	int i = 0;
 	int cnt = 0;
+	if (s == NULL)
+		s = ("(null)");
 	while (s[i])
 	{
 		cnt += ft_putchar(s[i]);
@@ -87,11 +89,9 @@ char *ft_atoi(int nb)
 
 char *ft_atoi_base(unsigned int nb, int base)
 {
-	int i = 0;
 	char *ns;
 	int digit = 0;
 	unsigned int num;
-	int neg = 1;
 
 	if (nb == 0)
 		return (ft_strdup("0"));
@@ -175,7 +175,7 @@ int ft_handle_input(va_list args, char *s)
 
 int ft_printf(const char *s, ...)
 {
-	int cnt;
+	int cnt = 0;
 	va_list args;
 	char *ns;
 	ns = ft_strdup(s);
@@ -189,11 +189,11 @@ int ft_printf(const char *s, ...)
 
 int main()
 {
-	// char *s = "arrive";
+	char *s = NULL;
 	int i = -1235;
 	int x = 42;
 
-	// ft_printf("%s\n", s);
+	ft_printf("%s\n", s);
 	ft_printf("%d\n", i);
 	ft_printf("%x\n", x);
 }
