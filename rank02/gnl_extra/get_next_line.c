@@ -1,40 +1,38 @@
 #include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-int	strlen2(char *str)
+int	strlen2(char *s)
 {
 	int	i;
 
 	i = 0;
-	if (str == 0)
+	if (s == 0)
 		return (0);
-	while (str[i])
+	while (s[i])
 		i++;
 	return (i);
 }
 
 char	*join(char *str, char c)
 {
-	char	*mem;
+	char	*tmp;
 	int		i;
 	int		len;
 
 	i = 0;
 	len = strlen2(str);
-	mem = malloc(len + 2);
-	if (mem == 0)
+	tmp = malloc(len + 2);
+	if (tmp == 0)
 		return (0);
 	while (i < len)
 	{
-		mem[i] = str[i];
+		tmp[i] = str[i];
 		i++;
 	}
-	mem[i] = c;
-	mem[i + 1] = 0;
+	tmp[i] = c;
+	tmp[i + 1] = 0;
 	if (str)
 		free(str);
-	return (mem);
+	return (tmp);
 }
 
 char	*get_next_line(int fd)

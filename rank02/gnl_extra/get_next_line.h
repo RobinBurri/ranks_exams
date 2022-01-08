@@ -2,14 +2,19 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 10
 # endif
+
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
 
 typedef struct s_read
 {
 	int		fd;
 	int		pos;
-	int		max;
+	int		hasread;
 	char	data[BUFFER_SIZE];
 }	t_read;
 
