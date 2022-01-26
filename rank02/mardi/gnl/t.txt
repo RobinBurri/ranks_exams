@@ -1,3 +1,0 @@
-ffirst line,
-seconde line,
-last line.
