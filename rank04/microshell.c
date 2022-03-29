@@ -29,7 +29,7 @@ void	ft_cd(char **av)
 
 void	ft_exec(t_data *data, char **av, char **envp)
 {
-	int fd;
+	int pid;
 	int	pipefd[2];
 	char *fatal_error = "error: fatal\n";
 	char *cmd_error = "error: cannot execute ";
@@ -46,13 +46,13 @@ void	ft_exec(t_data *data, char **av, char **envp)
 		write(2, fatal_error, ft_strlen(fatal_error));
 		exit(1);
 	}
-	fd = fork();
-	if (fd == -1)
+	pid = fork();
+	if (pid == -1)
 	{
 		write(2, fatal_error, ft_strlen(fatal_error));
 		exit(1);
 	}
-	if (fd == 0)
+	if (pid == 0)
 	{
 		if (data->stdout_pipe == 1)
 		{
@@ -77,7 +77,7 @@ void	ft_exec(t_data *data, char **av, char **envp)
 		}
 		else
 			dup2(data->old_stdin, STDIN_FILENO);
-		waitpid(fd, &data->status, 0);
+		waitpid(pid, &data->status, 0);
 	}
 }
 
